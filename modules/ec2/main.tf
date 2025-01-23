@@ -5,11 +5,19 @@ resource "aws_instance" "sajjan_web_server" {
   availability_zone = var.availability_zone
   subnet_id = var.subnet_id
   key_name          = "SajjanKeyPair"
-security_groups = [ var.security_group_id ]
+security_groups = [var.security_group_id]
 count = var.ec2_count
 
 
   tags = {
     Name = "Sajjan_Webserver"
   }
+
+lifecycle {
+  ignore_changes = [ 
+    security_groups,
+    
+   ]
 }
+}
+

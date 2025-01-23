@@ -1,5 +1,5 @@
 output "instance_id" {
-  value = aws_instance.sajjan_web_server[*].id
+  value = aws_instance.sajjan_web_server[0].id
 }
 
 output "public_ip" {

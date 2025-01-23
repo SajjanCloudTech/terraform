@@ -9,6 +9,7 @@ module "security" {
   source    = "./modules/security"
    vpc_id    = module.vpc.vpc_id
   subnet_id = module.vpc.subnet_id
+  instance_id = module.ec2.instance_id
 }
 
 module "ec2" {
@@ -23,7 +24,7 @@ module "ec2" {
 
 module "s3" {
   source = "./modules/s3"
-  bucket_name = "sajjan_bucket"
+  bucket_name = "sajjan"
   tags = {
     Name = "sajjan_buckets"}
 }
