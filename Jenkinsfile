@@ -8,14 +8,13 @@ stages{
     //     }
     // }
 
-    // stage('Terraform init') {
-    //     steps {
-    //         script{
-    //             sh 'terraform init'
-    //         }
-         
-    //     }
-    // }
+    stage('Terraform init') {
+        steps {
+            script{
+                sh 'terraform init'
+            }
+        }
+    }
     // // stage('Terraform Plan') {
     // //      steps {
     // //         script {
