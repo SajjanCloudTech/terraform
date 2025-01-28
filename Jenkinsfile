@@ -41,7 +41,7 @@ stages{
             echo 'Terraform infrastructure deployed successfully.'
         }
         failure {
-            echo 'Pipeline failed. Check logs for details.'
+            echo 'Pipeline failed. Check logs for details!'
         }
      }
 }
