@@ -33,4 +33,15 @@ stages{
          }
     }
     }
+     post {
+        always {
+            echo 'Pipeline execution complete.'
+        }
+        success {
+            echo 'Terraform infrastructure deployed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed. Check logs for details.'
+        }
+     }
 }
