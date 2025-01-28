@@ -18,7 +18,7 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    // Navigate to the Terraform directory and execute the plan
+                    // Navigate to the Terraform directory and execute the plan 123
                     bat """
                         cd ${env.TERRAFORM_DIR}
                         terraform plan
