@@ -2,35 +2,43 @@ pipeline {
     agent any
 
 stages{
-    stage ('Checkout'){
-        steps{
-            checkout scm
-        }
-    }
+    // stage ('Checkout'){
+    //     steps{
+    //         checkout scm
+    //     }
+    // }
 
-    stage('Terraform init') {
-        steps {
-            script{
-                sh 'terraform init'
-            }
+    // stage('Terraform init') {
+    //     steps {
+    //         script{
+    //             sh 'terraform init'
+    //         }
          
-        }
-    }
-    // stage('Terraform Plan') {
+    //     }
+    // }
+    // // stage('Terraform Plan') {
+    // //      steps {
+    // //         script {
+    // //             sh 'terraform plan'
+    // //         }
+            
+    // //      }
+    // // }
+    //     stage('Terraform Apply') {
     //      steps {
-    //         script {
-    //             sh 'terraform plan'
+    //         script{
+    //             sh 'terraform apply -auto-approve'
     //         }
             
     //      }
     // }
-        stage('Terraform Apply') {
-         steps {
+        stage('Terraform Destroy') {
+        steps {
             script{
-                sh 'terraform apply -auto-approve'
+                sh 'terraform destroy -auto-approve'
             }
-            
-         }
+         
+        }
     }
     }
      post {
@@ -44,4 +52,5 @@ stages{
             echo 'Pipeline failed. Check logs for details!!'
         }
      }
+
 }
