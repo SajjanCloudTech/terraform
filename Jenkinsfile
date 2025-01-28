@@ -16,18 +16,18 @@ stages{
          
         }
     }
-    stage('Terraform Plan') {
-         steps {
-            script {
-                sh 'terraform plan'
-            }
+    // stage('Terraform Plan') {
+    //      steps {
+    //         script {
+    //             sh 'terraform plan'
+    //         }
             
-         }
-    }
+    //      }
+    // }
         stage('Terraform Apply') {
          steps {
             script{
-                sh 'terraform apply'
+                sh 'terraform apply -auto-approve'
             }
             
          }
