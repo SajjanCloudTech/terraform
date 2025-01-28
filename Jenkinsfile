@@ -1,30 +1,36 @@
 pipeline {
     agent any
-    environment {
-        TERRAFORM_DIR = 'C:\\Users\\acer\\OneDrive\\Desktop\\sajjan\\CloudTech\\terraform\\terraform-aws'
+
+stages{
+    stage ('Checkout'){
+        steps{
+            checkout main
+        }
     }
-    stages {
-        stage('Terraform Init') {
-            steps {
-                script {
-                    // Navigate to the Terraform directory and initialize
-                    bat """
-                        cd ${env.TERRAFORM_DIR}
-                        terraform init
-                    """
-                }
+
+    stage('Terraform init') {
+        steps {
+            script{
+                sh 'terraform init'
             }
+         
         }
-        stage('Terraform Plan') {
-            steps {
-                script {
-                    // Navigate to the Terraform directory and execute the plan 123
-                    bat """
-                        cd ${env.TERRAFORM_DIR}
-                        terraform plan
-                    """
-                }
+    }
+    stage('Terraform Plan') {
+         steps {
+            script {
+                sh 'terraform plan'
             }
-        }
+            
+         }
+    }
+        stage('Terraform Apply') {
+         steps {
+            script{
+                sh 'terraform apply'
+            }
+            
+         }
+    }
     }
 }
