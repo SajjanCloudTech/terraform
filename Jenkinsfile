@@ -6,8 +6,8 @@ pipeline {
     }
 
     environment {
-        ENV_DIR = "environments/${params.ENVIRONMENT}"  // Set environment folder dynamically
-        TFVARS_FILE = "${ENV_DIR}/terraform.tfvars"  // Use environment-specific variables
+        ENV_DIR = "environments/${params.ENVIRONMENT}"  // Set environment dynamically
+        TFVARS_FILE = "${WORKSPACE}/${ENV_DIR}/terraform.tfvars"  // Full absolute path
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 dir(ENV_DIR) {
                     sh '''
-                    terraform init  # Backend is defined in main.tf
+                    terraform init
                     '''
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
 
         stage('Terraform Apply') {
             when {
-                not { environment name: 'ENVIRONMENT', value: 'dev' }  // Prevent auto-apply in dev
+                not { environment name: 'ENVIRONMENT', value: 'dev' }  // Prevent apply in dev
             }
             steps {
                 dir(ENV_DIR) {
