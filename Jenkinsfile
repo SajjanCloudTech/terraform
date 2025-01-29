@@ -38,10 +38,7 @@ pipeline {
         }
 
         stage('Terraform Apply') {
-            when {
-                not { environment name: 'ENVIRONMENT', value: 'dev' }  // Prevent apply in dev
-            }
-            steps {
+                     steps {
                 dir(ENV_DIR) {
                     sh '''
                     terraform apply -auto-approve -var-file=${TFVARS_FILE}
