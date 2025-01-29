@@ -22,7 +22,7 @@ module "ec2" {
   ec2_count         = 2
 }
 
-module "s3" {
+module "s3_backend" {
   source      = "../../modules/s3"
   bucket_name = "sajjan-terraform-state"
 dynamodb_table_name = "terraform-state-lock"
