@@ -1,4 +1,4 @@
-output "s3_bucket_name" {
+output "s3" {
   value = aws_s3_bucket.terraform_state.bucket
 }
 
