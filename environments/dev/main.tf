@@ -32,7 +32,7 @@ dynamodb_table_name = "terraform-state-lock"
 
 terraform {
   backend "s3" {
-    bucket         = "sajjan"
+    bucket         = "sajjan_buckets"
     key            = "dev/terraform.tfstate"
     region         = "us-east-2"
     encrypt        = true
