@@ -9,6 +9,3 @@ variable "subnet_id" {
   type        = string
 }
 
-variable "environment" {
-  default = "default"
-}

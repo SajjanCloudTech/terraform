@@ -27,6 +27,4 @@ variable "ec2_count" {
   type = number
 }
 
-variable "environment" {
-  default = "default"
-}
+

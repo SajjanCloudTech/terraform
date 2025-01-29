@@ -5,8 +5,8 @@ resource "aws_security_group" "allow_webtraffic" {
   vpc_id      = var.vpc_id
 
   tags = {
-    Name = "allow_webtraffic-${terraform.workspace}"
-    Environment = terraform.workspace
+    Name = "allow_webtraffic"
+
   }
 }
 
@@ -64,16 +64,16 @@ resource "aws_internet_gateway" "IGW" {
   vpc_id = var.vpc_id
 
   tags = {
-    Name = "Sajjan_IGW-${terraform.workspace}"
-    Environment = terraform.workspace
+    Name = "Sajjan_IGW"
+
   }
 }
 resource "aws_egress_only_internet_gateway" "EIGW" {
   vpc_id = var.vpc_id
 
   tags = {
-    Name = "Sajjan_EIGW-${terraform.workspace}"
-    Environment = terraform.workspace
+    Name = "Sajjan_EIGW"
+
   }
 }
 
@@ -92,8 +92,8 @@ resource "aws_route_table" "Route_Table" {
   }
 
   tags = {
-    Name = "Sajjan_RT-${terraform.workspace}"
-    Environment = terraform.workspace
+    Name = "Sajjan_RT"
+   
   }
 }
 

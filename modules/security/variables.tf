@@ -12,6 +12,4 @@ variable "instance_id" {
   type        = string
 }
 
-variable "environment" {
-  default = "default"
-}
+
