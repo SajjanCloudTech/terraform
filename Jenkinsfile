@@ -48,9 +48,7 @@ pipeline {
     //     }
     // }
 stage('Terraform Destroy') {
-            when {
-                expression { params.CONFIRM_DESTROY }  // Ensure user confirms destruction
-            }
+
             steps {
                 dir(ENV_DIR) {
                     sh '''
