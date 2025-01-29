@@ -17,15 +17,15 @@ pipeline {
             }
         }
 
-    //     stage('Terraform Init') {
-    //         steps {
-    //             dir(ENV_DIR) {
-    //                 sh '''
-    //                 terraform init
-    //                 '''
-    //             }
-    //         }
-    //     }
+        stage('Terraform Init') {
+            steps {
+                dir(ENV_DIR) {
+                    sh '''
+                    terraform init
+                    '''
+                }
+            }
+        }
 
     //     stage('Terraform Plan') {
     //         steps {
