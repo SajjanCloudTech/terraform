@@ -6,8 +6,9 @@ pipeline {
     }
 
     environment {
-        ENV_DIR = "environments/${params.ENVIRONMENT}"  // Dynamically set the environment folder
-        TFVARS_FILE = "${ENV_DIR}/terraform.tfvars"
+        ENV_DIR = "environments/${params.ENVIRONMENT}"  // Dynamically select the environment folder
+        TFVARS_FILE = "${ENV_DIR}/terraform.tfvars"  // Variable file for each environment
+        BACKEND_FILE = "${ENV_DIR}/backend.tf"  // Backend configuration file
     }
 
     stages {
@@ -17,11 +18,21 @@ pipeline {
             }
         }
 
+        stage('Verify Backend File') {
+            steps {
+                script {
+                    if (!fileExists("${BACKEND_FILE}")) {
+                        error "Error: ${BACKEND_FILE} is missing. Please check your repository."
+                    }
+                }
+            }
+        }
+
         stage('Terraform Init') {
             steps {
                 dir(ENV_DIR) {
                     sh '''
-                    terraform init -backend-config="${ENV_DIR}/backend.tf"
+                    terraform init -backend-config="backend.tf"
                     '''
                 }
             }
@@ -38,6 +49,9 @@ pipeline {
         }
 
         stage('Terraform Apply') {
+            when {
+                not { environment name: 'ENVIRONMENT', value: 'dev' }  // Prevent automatic apply in dev
+            }
             steps {
                 dir(ENV_DIR) {
                     sh '''
@@ -49,7 +63,7 @@ pipeline {
 
         stage('Terraform Destroy') {
             when {
-                environment name: 'ENVIRONMENT', value: 'dev'  // Only allow destroy in development
+                environment name: 'ENVIRONMENT', value: 'dev'  // Allow destroy only in development
             }
             steps {
                 dir(ENV_DIR) {
