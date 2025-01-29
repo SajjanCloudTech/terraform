@@ -10,7 +10,8 @@ count = var.ec2_count
 
 
   tags = {
-    Name = "Sajjan_Webserver"
+    Name = "Sajjan_Webserver-${terraform.workspace}"
+    Environment = terraform.workspace
   }
 
 lifecycle {

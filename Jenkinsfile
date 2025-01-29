@@ -2,11 +2,11 @@ pipeline {
     agent any
 
 stages{
-    // stage ('Checkout'){
-    //     steps{
-    //         checkout scm
-    //     }
-    // }
+    stage ('Checkout'){
+        steps{
+            checkout scm
+        }
+    }
 
     stage('Terraform init') {
         steps {
@@ -15,30 +15,30 @@ stages{
             }
         }
     }
-    // // stage('Terraform Plan') {
-    // //      steps {
-    // //         script {
-    // //             sh 'terraform plan'
-    // //         }
-            
-    // //      }
-    // // }
-    //     stage('Terraform Apply') {
+    // stage('Terraform Plan') {
     //      steps {
-    //         script{
-    //             sh 'terraform apply -auto-approve'
+    //         script {
+    //             sh 'terraform plan'
     //         }
             
     //      }
     // }
-        stage('Terraform Destroy') {
-        steps {
+        stage('Terraform Apply') {
+         steps {
             script{
-                sh 'terraform destroy -auto-approve'
+                sh 'terraform apply -auto-approve'
             }
-         
-        }
+            
+         }
     }
+    //     stage('Terraform Destroy') {
+    //     steps {
+    //         script{
+    //             sh 'terraform destroy -auto-approve'
+    //         }
+         
+    //     }
+    // }
     }
      post {
         always {

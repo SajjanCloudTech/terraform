@@ -26,3 +26,7 @@ variable "instance_type" {
 variable "ec2_count" {
   type = number
 }
+
+variable "environment" {
+  default = "default"
+}

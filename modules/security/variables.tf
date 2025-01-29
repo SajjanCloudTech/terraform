@@ -11,3 +11,7 @@ variable "instance_id" {
   description = "The instance type for the EC2 instance"
   type        = string
 }
+
+variable "environment" {
+  default = "default"
+}
