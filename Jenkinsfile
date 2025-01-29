@@ -17,37 +17,49 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
+    //     stage('Terraform Init') {
+    //         steps {
+    //             dir(ENV_DIR) {
+    //                 sh '''
+    //                 terraform init
+    //                 '''
+    //             }
+    //         }
+    //     }
+
+    //     stage('Terraform Plan') {
+    //         steps {
+    //             dir(ENV_DIR) {
+    //                 sh '''
+    //                 terraform plan -var-file=${TFVARS_FILE}
+    //                 '''
+    //             }
+    //         }
+    //     }
+
+    //     stage('Terraform Apply') {
+    //                  steps {
+    //             dir(ENV_DIR) {
+    //                 sh '''
+    //                 terraform apply -auto-approve -var-file=${TFVARS_FILE}
+    //                 '''
+    //             }
+    //         }
+    //     }
+    // }
+stage('Terraform Destroy') {
+            when {
+                expression { params.CONFIRM_DESTROY }  // Ensure user confirms destruction
+            }
             steps {
                 dir(ENV_DIR) {
                     sh '''
-                    terraform init
-                    '''
-                }
-            }
-        }
-
-        stage('Terraform Plan') {
-            steps {
-                dir(ENV_DIR) {
-                    sh '''
-                    terraform plan -var-file=${TFVARS_FILE}
-                    '''
-                }
-            }
-        }
-
-        stage('Terraform Apply') {
-                     steps {
-                dir(ENV_DIR) {
-                    sh '''
-                    terraform apply -auto-approve -var-file=${TFVARS_FILE}
+                    terraform destroy -auto-approve -var-file=${TFVARS_FILE}
                     '''
                 }
             }
         }
     }
-
     post {
         always {
             echo 'Pipeline execution complete.'
