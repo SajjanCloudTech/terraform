@@ -1,11 +1,10 @@
-resource "aws_dynamodb_table" "statelock" {
-  name         = "state-lock"
-  hash_key     = "LockID"
-  billing_mode = "PAY_PER_REQUEST"
 
-  attribute {
-    name = "LockID"
-    type = "S"
+terraform {
+  backend "s3" {
+    bucket         = "my-terraform-state-bucket"
+    key            = "terraform.tfstate"
+    region         = "us-east-2"
+    encrypt        = true
+    dynamodb_table = "terraform-state-lock"
   }
 }
-

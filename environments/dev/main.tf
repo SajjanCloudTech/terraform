@@ -25,7 +25,7 @@ module "ec2" {
 module "s3" {
   source      = "../../modules/s3"
   bucket_name = "sajjan"
-
+dynamodb_table_name = "terraform-state-lock"
   tags = {
   Name = "sajjan_buckets" }
 }
