@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        TERRAFORM_WORKSPACE = "dev" // Set the Terraform workspace jenkins test
+        TERRAFORM_WORKSPACE = "dev" // Set the Terraform workspace jenkins test 2
     }
 
     stages {
