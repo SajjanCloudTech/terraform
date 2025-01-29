@@ -14,7 +14,7 @@ output "security_group_id" {
   value = module.security.security_group_id
 }
 
-output "s3_backend_bucket" {
+output "s3" {
   value = module.s3_backend.s3_bucket_name
 }
 
