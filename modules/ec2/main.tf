@@ -6,7 +6,7 @@ resource "aws_instance" "sajjan_web_server" {
   subnet_id = var.subnet_id
   key_name          = "SajjanKeyPair"
 security_groups = [var.security_group_id]
-count = var.ec2_count
+
 
 
   tags = {

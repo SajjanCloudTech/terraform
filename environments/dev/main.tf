@@ -19,7 +19,6 @@ module "ec2" {
   availability_zone = "us-east-2a"
   ami               = "ami-09ad6bca8b1dfb96b"
   instance_type     = "t2.micro"
-  ec2_count         = 2
 }
 
 module "s3_backend" {
